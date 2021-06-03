@@ -41,18 +41,28 @@ class Pawn(Piece):
         new_squares = []
 
         if  self.player == Player.WHITE:
+            if board.get_piece(Square.at(current_square.row+1, current_square.col)):
+                return []
             if  current_square.row == 1:
                 new_squares.append(Square.at(current_square.row + 1, current_square.col))
+                if board.get_piece(Square.at(current_square.row+2, current_square.col)):
+                    return new_squares
                 new_squares.append(Square.at(current_square.row + 2, current_square.col))
             else:
                 new_squares.append(Square.at(current_square.row + 1, current_square.col))
         else:
+            if board.get_piece(Square.at(current_square.row-1, current_square.col)):
+                return []
             if  current_square.row == 6:
                 new_squares.append(Square.at(current_square.row - 1, current_square.col))
+                if board.get_piece(Square.at(current_square.row-2, current_square.col)):
+                    return new_squares
                 new_squares.append(Square.at(current_square.row - 2, current_square.col))
             else:
                 new_squares.append(Square.at(current_square.row - 1, current_square.col))
         return new_squares
+
+        
 
 
 
