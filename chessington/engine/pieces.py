@@ -34,8 +34,27 @@ class Pawn(Piece):
     A class representing a chess pawn.
     """
 
+    def isFirstMove(self, current_square): 
+        if self.player== Player.White:
+            if current_square.row == 1:
+                return True
+        elif self.Player == Player.Black:
+            if current_square.row == 6:
+                return True
+        else: return False
+
+
+
     def get_available_moves(self, board):
+        # get pawn location
         current_square = board.find_piece(self)
+        # check if something is in the way (1 tile away), is_piece_blocked(self, blocking_coordinate)
+        # if nothing in the way, add pawn +1 to available moves
+
+        #check if it's first move, if it is then consider moving 2 spaces, and if anything is blocking the 2 space move
+        if (Pawn.isFirstMove(self, current_square)):
+
+
     
 
         new_squares = []
@@ -62,7 +81,9 @@ class Pawn(Piece):
                 new_squares.append(Square.at(current_square.row - 1, current_square.col))
         return new_squares
 
-        
+   
+
+
 
 
 
